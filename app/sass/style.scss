@@ -10,6 +10,11 @@
 	box-sizing: border-box;
 }
 
+$fsize: 16px;
+$ffamily: 'Lato', sans-serif;
+$activeColor: #41bedd;
+$normalColor: #34383d;
+
 .page {
 	font-family: $ffamily;
 }
@@ -19,17 +24,26 @@
 	background: linear-gradient(to left, #35eef6, #7c28b1);
 	color: #fff;
 	text-align: center;
-	height: 403px;
+	padding-top: 3px;
+	padding-bottom: 50px;
 
 	&__h1 {
 		font-size: 60px;
 		line-height: 60px;
 		font-weight: 100;
-		padding-top: 205px;
-		padding-bottom: 13px;
+		padding: 202px 15px 13px;
 	}
 }
 
+			/*фиксированный header*/
+%container {
+	max-width: 1200px;
+	padding: 0 15px;
+}
+
+%menu-flex {
+	@include flex(center, 0);
+}
 .top {
 	position: fixed;
 	background-color: #fff;
@@ -44,8 +58,65 @@
 		height: 100%;
 		@extend %container;
 	}
+
+		
+
+	&__menu {
+		@extend %menu-flex;
+	}
 }
 
+			/*кнопка открытия меню на маленьних экранах*/
+.menu-open {
+	display: none;
+	position: relative;
+	width: 35px;
+	height: 20px;
+	cursor: pointer;
+	z-index: 1;
+
+	&__global {
+		position: absolute;
+		width: 100%;
+		height: 4px;
+		background-color: #bdc3c7;
+		border-radius: 2px;
+		left: 0;
+		transition: transform .2s;
+
+		&_top {
+			top: 0;
+
+			&_open {
+				transform: rotate(37deg);
+				transform-origin: 0 0;
+				/*transition: transform .2s;*/
+			}
+		}
+
+		&_middle {
+			top: 50%;
+
+			&_open {
+				transform: scaleX(0);
+				/*transition: transform .2s;*/
+			}
+		}
+
+		&_bottom {
+			top: 100%;
+
+			&_open {
+				transform: rotate(-37deg);
+				transform-origin: 0 100%;
+				/*transition: transform .2s;*/
+			}
+		}
+	}
+}
+			/*END кнопка открытия меню на маленьних экранах*/
+
+			/*логотип*/
 .logo {
 
 	&__link {
@@ -59,12 +130,16 @@
 		height: 100%;
 	}
 }
+			/*END логотип*/
 
+			/*меню общие*/
+%relative {
+	position: relative;
+}
 .menu {
-	@extend %menu-flex;
-
+	
 	&__items {
-		@extend %menu-flex;
+		display: flex;
 	}
 
 	&__item {
@@ -76,26 +151,139 @@
 	&__link {
 		@extend %relative;
 	}
-	&__search {
-		width: 40px;
-		height: 40px;
-		background: url(../img/spritesheet.png) no-repeat -10px -604px;
-	}
 }
+			/*END меню общие*/
 
-.form {
-	display: none;
-	padding-right: 30px;
+			/*поиск*/
+.search {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	overflow: hidden;
 
-	&__search {
-		height: 30px;
+	&__input {
+		opacity: 0;
+		width: 0;
+		/*height: 30px;
 		border-radius: 5px;
 		border: 1px solid #bdc3c7;
 		padding: 5px 30px;
+		margin-right: 30px;*/
+		transform: translateX(200px);
+		transition: .3s;
+
+		&_open {
+			opacity: 1;
+			width: 200px;
+			transform: translateX(0);
+			height: 30px;
+			border-radius: 5px;
+			border: 1px solid #bdc3c7;
+			padding: 5px 30px;
+			margin-right: 30px;
+			outline: none;
+			/*transition: .3s;*/
+		}
+	}
+
+	&__btn {
+		z-index: 20;
+		font-size: 0;
+		width: 41px;
+		height: 41px;
+		background: #fff url(../img/spritesheet.png) no-repeat -9px -604px;
 	}
 }
+			/*END поиск*/
 
+			/*меню навигации*/
 .menu {
+
+	&_navigation {
+
+		&_js {
+			opacity: 0;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			background-color: #fff;
+			transform: translateY(-100%);
+			transition: .3s;
+			z-index: -1;
+
+			.menu {
+
+				&__items_navigation {
+					flex-direction: column;
+					align-items: flex-start;
+					padding: 0 10px;
+				}
+
+				&__item_navigation {
+					min-width: 100%;
+				}
+
+				&__link_navigation {
+					padding: 15px;
+					padding-right: 30px;
+					text-align: left;
+
+					&::after {
+						top: 24px;
+					}
+				}
+			}
+
+	.dropdown {
+		
+		top: 0;
+		position: relative;
+		background-color: #fff;
+		border-left: 1px solid #ecf0f1;
+		z-index: 1;
+	
+		&__link {
+			border: none;
+		padding-bottom: 0;
+		}
+	}
+			/*END первая вложенность*/
+
+			/*вторая вложенность*/
+	.dropdown2 {
+	
+		left: 40px;
+		top: 0;
+		position: relative;
+		background-color: #fff;
+		border-left: 1px solid #ecf0f1;
+		z-index: 1;
+
+		&::before {
+			display: block;
+			content: "";
+			position: absolute;
+			width: 60%;
+			top: 5px;
+			left: -23px;
+			height: 2px;
+			background-color: #3fb8d6;
+			z-index: 11;
+		}
+
+
+		&__link {
+			border: none;
+		padding-bottom: 0;
+		}
+	}
+		}
+
+		&_open {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 
 	&__items {
 
@@ -109,8 +297,8 @@
 		&_navigation {
 			@include a($normalColor);
 			padding: 0 27px 5px;
-			font-size: $fsize + 2;
-			line-height: $fsize + 2;
+			font-size: ($fsize) + 2;
+			line-height: ($fsize) + 2;
 
 			&::after {
 				@include element(8px, 7px, 4px, -10px -10px);
@@ -123,7 +311,25 @@
 		}
 	}
 }
+			/*END меню навигации*/
+			
+			/*выпадающее меню первая вложенность*/
+%dropdown {
+	position: absolute;
+	background-color: #fff;
+	text-align: left;
+}
+%dropdown-item {
+	display: block;
+	list-style: none;
+}
 
+%dropdown-link {
+	@include a($normalColor);
+	border: 1px solid #ecf0f1;
+	margin-top: -1px;
+	padding: 10px 25px 10px 18px;
+}
 
 .dropdown {
 	display: none;
@@ -132,25 +338,31 @@
 	left: 8px;
 	top: 63px;
 
+	&_open {
+		display: block;
+	}
+
 	&::before {
 		display: block;
+		content: "";
 		position: absolute;
 		width: 50%;
-		top: 0;
+		top: -2px;
 		left: 0;
 		height: 2px;
 		background-color: #3fb8d6;
+		z-index: 11;
 	}
 
 	&__item {
 		@extend %dropdown-item;
-		@extend %relative;
+		position: relative;
 	}
 
 	&__link {
 		@extend %dropdown-link;
 		padding-right: 31px;
-		@extend %relative;
+		position: relative;
 
 		&::after {
 			@include element(20px, 7px, 4px, -10px -10px);
@@ -163,13 +375,19 @@
 		}
 	}
 }
+			/*END первая вложенность*/
 
+			/*вторая вложенность*/
 .dropdown2 {
 
 	display: none;
 	@extend %dropdown;
 	left: 100%;
 	top: 1px;
+
+	&_open {
+		display: block;
+	}
 
 	&__item {
 		@extend %dropdown-item;
@@ -185,19 +403,16 @@
 		}
 	}
 }
+			/*END выпадающее меню вторая вложенность*/
 
+			/*меню хлебные крошки*/
 .menu {
 
 	&_bread-crumbs {
-		max-width: 396px;
 		margin: auto;
-	}
-
-	&__item {
-
-		&_bread-crumbs {
-			line-height: $fsize;
-		}
+		justify-content: center;
+		display: flex;
+		padding-bottom: 50px;
 	}
 
 	&__link {
@@ -210,30 +425,55 @@
 				@include element(6px, 4px, 7px, -10px -157px);
 				right: -2px;
 			}
+		}
+	}
 
-			&_last {
-			padding-right: 0;
+	&__item {
 
-				&::after {
-					display: none;
+		&_bread-crumbs {
+			line-height: $fsize;
+			
+			&:last-child {
+
+				.menu__link_bread-crumbs {
+					padding-right: 0;
+
+					&::after {
+						display: none;
+					}
 				}
-			}
+			}			
 		}
 	}
 }
+			/*END меню хлебные крошки*/
 
+			/*основное содержание*/
 .main {
 	width: 100%;
-	padding: 70px 0;
-	@extend %relative;
+	padding: 40px 0;
+	position: relative;
+
 
 	&__container {
+		/*контейнер*/
 		@extend %container;
 		margin: auto;
-		padding-bottom: 50px;
+		padding: 15px 0 30px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
-
+			
+	&__button {
+		/*кнопка*/
+		padding-top: 30px;
+		margin: auto;
+	}
+			
+			
 	&::after {
+		/*граница внизу*/
 		content:"";
 		position: absolute;
 		bottom: -3px;
@@ -244,19 +484,13 @@
 	}
 }
 
+			/*меню категории картинок*/
 .menu {
 
 	&_block {
-		max-width: 504px;
 		margin: auto;
+		padding: 15px;
 		border-radius: 5px;
-	}
-
-	&__item {
-
-		&_block {
-			
-		}
 	}
 
 	&__link {
@@ -268,14 +502,6 @@
 			font-weight: 500;
 			margin-left: -1px;
 
-			&_first {
-				border-radius: 5px 0 0 5px;
-			}
-
-			&_last {
-				border-radius: 0 5px 5px 0;
-			}
-
 			&_selected {
 				background-color: $activeColor;
 				color: #fff;
@@ -283,79 +509,85 @@
 			}
 		}
 	}
-}
 
-.grid {
-	margin: auto;
 	&__item {
-		display: block;
-		margin-top: 30px;
-		width: 370px;
 
-		&:nth-child(1) {
-			height: 370px;
-		}
+		&_block {
+			
+			&:first-child .menu__link_block {
+				border-radius: 5px 0 0 5px;
+			}
 
-		&:nth-child(2) {
-			height: 270px;
-		}
-
-		&:nth-child(3) {
-			height: 170px;
-		}
-
-		&:nth-child(4) {
-			height: 510px;
-		}
-
-		&:nth-child(5) {
-			height: 170px;
-		}
-
-		&:nth-child(6) {
-			height: 270px;
-		}
-
-		&:nth-child(7) {
-			height: 210px;
+			&:last-child .menu__link_block {
+				border-radius: 0 5px 5px 0;
+			}
 		}
 	}
-} 
+}
+			/*END меню категории картинок*/
 
-.button {
+			/*masonry картинки*/
+.grid {
 	
-	&_smole{
-		width: 125px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	
+	&__item {
+		width: 33.3333%;
+		padding: 15px;
+		transition: .3s;
+
+
+		&:hover {
+			transform: scale(1.3);
+			z-index: 3;
+		}
+		
+	}
+
+	&__img {
+		width: 100%;
+		border-radius: 5px;
+	}
+} 
+			/*END masonry картинки*/
+
+			/*кнопка*/
+.button {
+
+	&__main {
 		margin: auto;
 	}
 
-	&_large {
-		width: 190px;
-	}
-
-	&_block {
+	&__block {
 		@include a($normalColor);
-		@include block(28px);
+		text-align: center;
 		border-radius: 5px;
+		line-height: 33px;
+		padding: 0 28px;
+		font-size: ($fsize) - 2;
+		border: 1px solid #bdc3c7;
 	}
 }
 
 .footer {
 	width: 100%;
-	height: 297px;
 	background-color: #ecf0f1;
 	padding-top: 32px;
 
 	&__container {
+		/*контейнер footer*/
 		@include flex(flex-start, auto);
 		@extend %container;
+		flex-wrap: wrap;
 		padding-bottom: 32px;
 		
 	}
 
 	&__bottom {
+		/*версия*/
 		width: 100%;
-		height: 71px;
 		background-color: #e3e7e9;
 		text-align: center;
 		border-top: 1px solid #cbd0d4;
@@ -368,6 +600,7 @@
 	}
 }
 
+			/*о нас*/
 .about {
 	
 	&__h3 {
@@ -385,28 +618,37 @@
 .about {
 
 	&_first {
-		max-width: 377px;
+		width: 32%;
 	}
 }
 
+			/*контакты*/
 .about {
 	&_contact {
-		width: 480px;
+		width: 43%;
+		display: flex;
+		flex-wrap: wrap;
 	}
 
 	&__container {
-		@include flex(flex-start, none);
+		/*@include flex(flex-start, 0);*/
+		display: flex;
 		flex-direction: column;
-		flex-wrap: wrap;
+		/*flex-wrap: wrap;
 		max-height: 100px;
-		width: 250px;
+		width: 250px*/;
+		width: 50%;
+
+		.button {
+			align-self: flex-start;
+		}
 	}
 	
 	&__text {
 
 		&_contact {
-			padding: 0 45px 7px 35px;
-			@extend %relative;
+			padding: 0 0 7px 35px;
+			position: relative;
 			
 			&::before {
 				left: 1px;
@@ -429,9 +671,7 @@
 
 			&_skype {
 				&::before {
-					background-position: -4px -87
-
-					px;
+					background-position: -4px -87px;
 				}
 			}
 
@@ -445,20 +685,25 @@
 	}
 }
 
+			/*на связи*/
 .about {
 	
 	&_last {
-		width: 272px;
+		width: 23%;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
 	}
 
 	&__text{
 
 		&_icon {
+
 			width: 40px;
 			height: 40px;
 			font-size: 0;
 			display: inline-block;
-			margin: 3px 11px 11px 0;
+			margin: 3px 5px 11px 0;
 			border-radius: 50%;
 			background: url(../img/spritesheet.png) no-repeat;
 
@@ -504,6 +749,8 @@
 		}
 	}
 }
+
+@import "media";
 
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300');

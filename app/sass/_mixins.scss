@@ -33,37 +33,34 @@ $normalColor: #34383d;
 	border: 1px solid #bdc3c7;
 }
 
-%menu-flex {
-	@include flex(center, none);
-}
+// %menu-flex {
+// 	@include flex(center, 0);
+// }
 
-%dropdown {
-	position: absolute;
-	background-color: #fff;
-	text-align: left;
-}
+// %dropdown {
+// 	position: absolute;
+// 	background-color: #fff;
+// 	text-align: left;
+// }
 
-%dropdown-item {
-	display: block;
-	list-style: none;
-}
+// %dropdown-item {
+// 	display: block;
+// 	list-style: none;
+// }
 
-%dropdown-link {
-	@include a($normalColor);
-	border: 1px solid #ecf0f1;
-	margin-top: -1px;
-	line-height: 42px;
-	padding-left: 18px;
-}
+// %dropdown-link {
+// 	@include a($normalColor);
+// 	border: 1px solid #ecf0f1;
+// 	margin-top: -1px;
+// 	line-height: 42px;
+// 	padding-left: 18px;
+// }
 
-%relative {
-	position: relative;
-}
+// %relative {
+// 	position: relative;
+// }
 
-%container {
-	max-width: 1190px;
-	padding: 0 10px;
-}
+
 
 %selected {
 	color: $activeColor;
