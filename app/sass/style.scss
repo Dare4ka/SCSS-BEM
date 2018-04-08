@@ -19,6 +19,69 @@ $normalColor: #34383d;
 	font-family: $ffamily;
 }
 
+.map {
+	position: fixed;
+	width: 90%;
+	height: 80vh;
+	top: 5vw;
+	left: 5%;
+	z-index: -1;
+	opacity: 0;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+	border: 1px solid #bdc3c7;
+
+	&__clouse {
+		width: 40px;
+		height: 40px;
+		background-color: #fff;
+		border: 1px solid #bdc3c7;
+		border-radius: 50%;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 1;
+		cursor: pointer;
+	}
+
+	&__x {
+		font-size: 40px;
+		color: #bdc3c7;
+		text-align: center;
+		line-height: 30px;
+	}
+
+	&__iframe {
+		width: 100%;
+		height: 100%;
+	}
+
+	&_open {
+		opacity: 1;
+		z-index: 100;
+	}
+}
+
+.up {
+	display: none;
+	width: 40px;
+	height: 40px;
+	background-color: #fff;
+	border: 1px solid #bdc3c7;
+	border-radius: 50%;
+	position: fixed;
+	bottom: 50px;
+	right: 30px;
+	z-index: 20;
+	cursor: pointer;
+	font-size: 30px;
+	color: #bdc3c7;
+	text-align: center;
+	line-height: 35px;
+}
 
 .head {
 	background: linear-gradient(to left, #35eef6, #7c28b1);
@@ -45,7 +108,7 @@ $normalColor: #34383d;
 	@include flex(center, 0);
 }
 .top {
-	position: fixed;
+	position: absolute;
 	background-color: #fff;
 	top: 3px;
 	width: 100%;
@@ -234,49 +297,45 @@ $normalColor: #34383d;
 				}
 			}
 
-	.dropdown {
-		
-		top: 0;
-		position: relative;
-		background-color: #fff;
-		border-left: 1px solid #ecf0f1;
-		z-index: 1;
+			.dropdown {
+				top: 0;
+				position: relative;
+				background-color: #fff;
+				border-left: 1px solid #ecf0f1;
+				z-index: 1;
 	
-		&__link {
-			border: none;
-		padding-bottom: 0;
-		}
-	}
-			/*END первая вложенность*/
+				&__link {
+					border: none;
+					padding-bottom: 0;
+				}
+			}
 
-			/*вторая вложенность*/
-	.dropdown2 {
-	
-		left: 40px;
-		top: 0;
-		position: relative;
-		background-color: #fff;
-		border-left: 1px solid #ecf0f1;
-		z-index: 1;
+			.dropdown2 {
+				left: 40px;
+				top: 0;
+				position: relative;
+				background-color: #fff;
+				border-left: 1px solid #ecf0f1;
+				z-index: 1;
 
-		&::before {
-			display: block;
-			content: "";
-			position: absolute;
-			width: 60%;
-			top: 5px;
-			left: -23px;
-			height: 2px;
-			background-color: #3fb8d6;
-			z-index: 11;
-		}
+				&::before {
+					display: block;
+					content: "";
+					position: absolute;
+					width: 60%;
+					top: 5px;
+					left: -23px;
+					height: 2px;
+					background-color: #3fb8d6;
+					z-index: 11;
+				}
 
 
-		&__link {
-			border: none;
-		padding-bottom: 0;
-		}
-	}
+				&__link {
+					border: none;
+				padding-bottom: 0;
+				}
+			}
 		}
 
 		&_open {

@@ -1,8 +1,4 @@
-// $(function() {
 
-// 	// Пользовательские функции
-
-// });
 $(document).ready(function() {
 
 			// инициализация плагина Masonry
@@ -21,8 +17,7 @@ $('.search__btn').click(function () {
 	$('.search__input').toggleClass('search__input_open');
 	dropdown2.removeClass('dropdown2_open');
 	dropdown.removeClass('dropdown_open');
-	console.log($(document).width())
-	if ($(document).width() > 771 && $(document).width() < 1000) {
+	if ($(window).outerWidth() > 770 && $(window).outerWidth() < 1000) {
 		if ($('.search__input').hasClass('search__input_open')) {
 			$('.menu-open').css('display', 'block');
 			$('.menu_navigation').addClass('menu_navigation_js');
@@ -31,10 +26,9 @@ $('.search__btn').click(function () {
 			$('.menu_navigation').removeClass('menu_navigation_js');
 		}
 	}
-	if ($(document).width() < 480) {
+	if ($(window).outerWidth() < 480) {
 		if ($('.search__input').hasClass('search__input_open')) {
 			$('.logo').css('display', 'none');
-			console.log($(document).width())
 		} else {
 			$('.logo').css('display', 'block');
 		}
@@ -61,12 +55,11 @@ var documentWidth = $(document).width();
 
 
 
-$('.menu__link_navigation').click(function () {
+$('.menu__link_navigation').click(function (e) {
 
 	dropdownOpen($(this), dropdown, 'dropdown_open');
 	dropdown2.removeClass('dropdown2_open');
-	// console.log($(this).siblings('.dropdown').width());
-
+	e.preventDefault();
 	var left = $(this).siblings().offset().left;
 	var width = $(this).siblings().width();
 	var downPosition = left + width;
@@ -77,10 +70,10 @@ $('.menu__link_navigation').click(function () {
 	
 });
 
-$('.dropdown__link').click(function () {
+$('.dropdown__link').click(function (e) {
 
 	dropdownOpen($(this), dropdown2, 'dropdown2_open');
-
+	e.preventDefault();
 	var left = $(this).siblings().offset().left;
 	var width = $(this).siblings().width();
 	var downPosition = left + width;
@@ -103,18 +96,40 @@ $('.menu-open').click(function(){
 	dropdown2.removeClass('dropdown2_open');
 });
 
-// var menu = $('.menu_navigation');
+			// открытие Google карты
+$('#openInGoogleMaps').click(function openGoogleMaps(e) {
+	$('.map').addClass('map_open');
+	e.preventDefault();
+});
+			// закратие карты
+$('.map__clouse').click(function () {
+	$('.map').removeClass('map_open');
+});
 
-// $('*:not(menu)').click(function () {
-// 	dropdown.removeClass('dropdown_open');
-// 	dropdown2.removeClass('dropdown2_open');
-// });
+			// кнопка скрола вверх
+var windowHeight = $(window).height();
+
+$(window).scroll(function () {
+	if ($(this).scrollTop() > windowHeight) {
+		$('.up').css('display', 'block');
+	} else {$('.up').css('display', 'none');
+		}
+});
 
 
+$('.up').click(function() {
+    $('html, body').scrollTop(0);
+});
 
+$(window).scroll(function () {
+	var scroll = $(this).scrollTop();
+	var top = $('.top').position().top;
+	if ($(window).outerWidth() > 770 && $(window).height() > 414) {
 
-
-
+	if (top <= scroll) {
+		$('.top').css('position', 'fixed').css('top', '0')
+	}} 
+})
 
 
 
@@ -123,11 +138,3 @@ $('.menu-open').click(function(){
 
 
 });
-
-// $(window).load(function() {
-// 	if ($(document).width() < 770) {
-// 			$('.menu-open').css('display', 'block');
-// 		} else {
-// 			$('.menu-open').css('display', 'none');
-// 		}
-// 	});

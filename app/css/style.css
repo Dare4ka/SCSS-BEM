@@ -15,6 +15,81 @@
   font-family: "Lato", sans-serif;
 }
 
+.map {
+  position: fixed;
+  width: 90%;
+  height: 80vh;
+  top: 5vw;
+  left: 5%;
+  z-index: -1;
+  opacity: 0;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 40px;
+  border: 1px solid #bdc3c7;
+}
+
+.map__clouse {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #bdc3c7;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.map__x {
+  font-size: 40px;
+  color: #bdc3c7;
+  text-align: center;
+  line-height: 30px;
+}
+
+.map__iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.map_open {
+  opacity: 1;
+  z-index: 100;
+}
+
+.up {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #bdc3c7;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  z-index: 20;
+  cursor: pointer;
+  font-size: 30px;
+  color: #bdc3c7;
+  text-align: center;
+  line-height: 35px;
+}
+
 .head {
   background: -webkit-gradient(linear, right top, left top, from(#35eef6), to(#7c28b1));
   background: -webkit-linear-gradient(right, #35eef6, #7c28b1);
@@ -56,7 +131,7 @@
 }
 
 .top {
-  position: fixed;
+  position: absolute;
   background-color: #fff;
   top: 3px;
   width: 100%;
@@ -249,8 +324,6 @@
   -o-transition: .3s;
   transition: .3s;
   z-index: -1;
-  /*END первая вложенность*/
-  /*вторая вложенность*/
 }
 
 .menu_navigation_js .menu__items_navigation {
@@ -850,7 +923,7 @@
 
 @media screen and (max-height: 414px) {
   .top {
-    position: relative;
+    position: relative !important;
     height: 60px;
   }
   .dropdown {
@@ -885,7 +958,7 @@
     font-size: 40px;
   }
   .top {
-    position: relative;
+    position: relative !important;
   }
   .menu-open {
     display: block !important;
